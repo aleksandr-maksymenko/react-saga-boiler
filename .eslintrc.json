@@ -1,0 +1,87 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src"
+        ],
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
+  },
+  "extends": [
+    "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "prettier/@typescript-eslint"
+  ],
+  "rules": {
+    "import/prefer-default-export": false,
+    "react/display-name": false,
+    "react/prop-types": false,
+    "react/jsx-filename-extension": false,
+    "@typescript-eslint/explicit-function-return-type": [
+      "off",
+      {
+        "allowExpressions": true,
+        "allowTypedFunctionExpressions": true
+      }
+    ],
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/prefer-interface": false,
+    "@typescript-eslint/no-explicit-any": false,
+    "import/no-unresolved": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": [
+          "Link"
+        ],
+        "specialLink": [
+          "to"
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "src/setupTests.ts",
+          "stories/**"
+        ]
+      }
+    ],
+    "react/destructuring-assignment": false,
+    "react/button-has-type": true,
+    "no-underscore-dangle": "off",
+    "jsx-a11y/label-has-associated-control": false,
+    "jsx-a11y/label-has-for": false,
+    "jsx-a11y/interactive-supports-focus": false,
+    "jsx-a11y/click-events-have-key-events": false,
+    "jsx-a11y/no-noninteractive-element-interactions": false
+  }
+}

@@ -1,12 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { StoreContext } from 'redux-react-hook';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { RootAction } from 'modules/rootAction';
+import { ThemeProvider } from 'styled-components';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { theme, globalStyles } from 'theme';
+import { PageRoot } from './pages';
+import { createReduxStore } from './store';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const store = createReduxStore();
+const rootEl = document.getElementById('root');
+
+globalStyles();
+
+type x = RootAction;
+
+function render(Component: React.FunctionComponent): void {
+  ReactDOM.render(
+    <ThemeProvider theme={theme}>
+      <StoreContext.Provider value={store}>
+        <Router>
+          <Component />
+        </Router>
+      </StoreContext.Provider>
+    </ThemeProvider>,
+    rootEl,
+  );
+}
+
+render(PageRoot);
+
+if (process.env.NODE_ENV !== 'production') {
+  if (module.hot) {
+    module.hot.accept('./pages', () => {
+      render(PageRoot);
+    });
+  }
+}

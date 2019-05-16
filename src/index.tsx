@@ -4,6 +4,7 @@ import { StoreContext } from 'redux-react-hook';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { RootAction } from 'modules/rootAction';
 import { ThemeProvider } from 'styled-components';
+import { Normalize } from 'styled-normalize';
 
 import { theme, globalStyles } from 'theme';
 import { PageRoot } from './pages';
@@ -21,6 +22,7 @@ function render(Component: React.FunctionComponent): void {
     <ThemeProvider theme={theme}>
       <StoreContext.Provider value={store}>
         <Router>
+          <Normalize />
           <Component />
         </Router>
       </StoreContext.Provider>
